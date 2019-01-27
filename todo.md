@@ -14,7 +14,7 @@ I should keep the process of logging in minimal.
 The essential details I need include :
 1. Name of the student 
 2. Register number (This will be both the username and password , I need to convert 
-the entered regno to lowercase) 
+the entered regno to lowercase (not necessary))  
 3. Department and section
 4. Year (Should try to possibly find out the year from the entered Register number)
 

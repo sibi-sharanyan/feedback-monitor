@@ -47,9 +47,9 @@ function isLoggedIn(req, res, next) {
   res.redirect("/login");
 }
 
-//just a check rout
+//just a check route
 app.get("/check" , function(req, res) {
-    res.render("new.ejs");
+    res.render("testsch.ejs");
 })
 
 //to get question using AJAx

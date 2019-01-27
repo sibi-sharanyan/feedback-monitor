@@ -1,0 +1,106 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+  />
+
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+</head>
+
+<body>
+  <div class="container">
+    <div id="names" class = "d-inline"></div> 
+    <div class="ui-widget mt-5 ">
+      <strong class="mr-2">Enter subject name: </strong>
+      <input id="sub" type="text" class="w-75" />
+    </div>
+    <div class="mt-5">
+      <strong class="mr-3">Enter Staff name:</strong>
+      <input type="text" class="w-75" id = "staff" />
+    </div>
+    <div class="m-5">
+      <button id="addsub" class="btn btn-secondary ">Add subject</button>
+    </div>
+    
+      <button class="btn btn-primary mrl-5 w-50 float-right" id = "create">Create Test</button>
+    
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script>
+    $(function() {
+      var availableSubjects = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+      ];
+
+      // $("#sub").autocomplete({
+      //   classes: {
+      //     "ui-autocomplete": "highlight"
+      //   },
+      //   source: availableSubjects
+      // });
+        var cnt = 0;
+      $('#addsub').click(function() {
+        cnt++;
+        var sub = $('#sub').val();
+        var staff = $('#staff').val();
+        $('#names').prepend('<div class = "text-white pl-5 rounded bg-info m-2"  id = "' + cnt + '"' +  ' > <h2 class = "d-inline-block">' + sub + ' - ' + staff + '</h2>' + '<button id = "del' + cnt + '"   class="ml-2 mr-5 mt-1 btn btn-secondary d-inline-block float-right"> Delete </button>'  + ' <br> </div>' );
+        var namediv = '#del' + cnt;
+        var divno = '#' + cnt;
+        $(namediv).click(function() {
+        
+        $(divno).hide();
+      })
+      })
+
+
+    });
+
+  </script>
+</body>
+
