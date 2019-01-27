@@ -1,0 +1,207 @@
+<head>
+   		
+		<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+body{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #121217;
+}
+    .content{
+    width: 380px;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+}
+.blue_bg{
+    position: absolute;
+    width: 100%;
+    left: 0%;
+    height: 33%;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+.first{
+    top: 0%;
+}
+.second{
+    top:33%;
+}
+.third{
+    top:66%;
+}
+.text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    color: white;
+    padding: 0px 10px;
+    transform: translate(-50%, -50%);
+}
+
+</style>
+
+
+<body>
+    
+
+        <div class="content">
+            <div class="blue_bg first">
+            </div>
+            <div class="blue_bg second">
+            </div>
+            <div class="blue_bg third">
+            </div>
+            <div class="text">
+                <h2>Title Text</h2>
+                <p>Hey there! This is a sample text</p>
+            </div>
+        </div>
+    
+
+
+
+
+
+
+        <div class = "container">
+            
+            <!--test-->
+            
+
+        
+    <!--test-->
+<div class="d-inline-flex p-2 bd-highlight">TQM</div> 
+<div class="d-inline-flex p-2 bd-highlight">Devendran</div> 
+
+            <div class = "bt1">
+                
+                <button type="button" class="btn btn-primary btn-lg" id="ex" >Excellent</button>
+            <button type="button" class="btn btn-primary btn-lg" id = "vg">Very good</button>
+            <button type="button" class="btn btn-primary btn-lg" id = "gd">Good</button>
+            <button type="button" class="btn btn-primary btn-lg"  id = "av">Average</button>
+            <button type="button" class="btn btn-primary btn-lg"  id = "nd">Needs to improve</button>
+                
+                
+            </div>
+            
+            
+            <br> <br>
+            
+                        <div class = "bt">
+                
+                <button type="button" class="btn btn-primary btn-lg" id="ex" >Excellent</button>
+            <button type="button" class="btn btn-primary btn-lg" id = "vg">Very good</button>
+            <button type="button" class="btn btn-primary btn-lg" id = "gd">Good</button>
+            <button type="button" class="btn btn-primary btn-lg"  id = "av">Average</button>
+            <button type="button" class="btn btn-primary btn-lg"  id = "nd">Needs to improve</button>
+                
+                
+            </div>
+            
+            <button type="button" id = "next" class="btn btn-success">Next</button>
+        </div>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js" ></script>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <script>
+  var quess = [ "Q1.Explains the concept clearly" , "Q2.Relates Theoretical Course Concepts with Real Time Applications" , 
+"Q3.Has been able to increase my knowledge on subject" , "Q4.Helping students in providing study materials Lecture Notes,question banks with answer etc" , 
+"Q5.Conducting regular slip tests" , "Q6.Providing guidance for exam preparation" , 
+"Q7.Specifies the  importance of topics in GATE and other competitive exams,current affair etc" , 
+"Q8.Relates well with students and encourage interaction for clearing doubts"  , 
+"Q9.Provides assistance and counseling to the needy students"  , 
+"Q11.Communicates in English" , "Q12.Speaks clearly and audibly" , "Q13.Maintains discipline inside the class" , 
+"Q14.Makes the classroom very lively and interacting" , "Q15.General Feedback (Additional Comments)"];
+
+  var cnt = 0;
+  document.querySelector('#ques').innerHTML = "Q1.Explains the concept clearly";
+$(document).ready(function() {
+    $('#next').click(function() {  
+        cnt++; 
+        document.querySelector('.text').innerHTML = quess[cnt];
+    // test
+    
+        anime.timeline({
+        
+    })
+    .add({
+        targets: '.blue_bg',
+        left: ['-100%', '100%'],
+        easing: 'easeOutExpo',
+        duration: 2000,
+        delay: (el,i)=>i*200
+    })
+    .add({
+        targets: '.text',
+        top: ['75%', '50%'],
+        opacity: [0,1],
+        easing: 'easeOutExpo',
+        duration: 1200,
+        delay: (el, i)=>i*100,
+        offset: '-=1600'
+    })
+    
+    
+    
+    // test
+    
+
+})})
+        
+        
+    $('.bt1').click(function()   {
+       $('.bt1 :not(:focus)').hide();
+       $('.bt1 :focus').blur();
+        anime({
+  targets: this ,
+  translateX: 900
+});
+
+    }  )    
+
+
+
+</script>
+    
+</body>
+
+
+
+
+
+
+
