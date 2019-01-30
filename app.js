@@ -8,6 +8,7 @@ var express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   user = require("./models/users"),
+  subdb = require("./models/subdb"),
   passportLocalMongoose = require("passport-local-mongoose");
   
 
@@ -47,9 +48,27 @@ function isLoggedIn(req, res, next) {
   res.redirect("/login");
 }
 
-//just a check route
-app.get("/check" , function(req, res) {
-    res.render("testsch.ejs");
+//route for admin to create test
+app.get("/createtest" , function(req ,res) {
+  res.render("testsch");
+})
+
+
+//route to view questions
+app.get("/ques/:code" , function(req, res) {
+    var code  = req.params.code;
+    subdb.find({testcode: code } , function(err , arr) {
+      if(err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        console.log(arr);
+        res.render("check" , { arr: arr });
+      }
+    });
+    
 })
 
 //to get question using AJAx
@@ -68,9 +87,6 @@ app.get("/ques/:num" , function(req, res) {
 //Ajax response to check if user is already registered
 app.get("/ajax/chuser/:id" , function(req, res) {
     console.log(req.params.id);
-    // res.send("hii");
-    // res.setHeader('Content-Type', 'application/json');
-    // res.send(JSON.stringify({ a: 1 }));
     user.findOne({username: req.params.id} , function(err , uname)  
     {
       if(err)
@@ -81,8 +97,10 @@ app.get("/ajax/chuser/:id" , function(req, res) {
       {
         res.send("err");
       }
-      // res.send("user exists");
+      else
+      {
       res.json(uname);
+      }
     })
     
 })
@@ -112,8 +130,31 @@ app.get("/userpage" , function(req , res) {
 }  ) 
 
 
-
-
+//to post test chedule in db
+app.get("/posttest/:id/:code" , function(req , res)
+{
+  
+  // console.log(req.params.code);
+  var code = req.params.code;
+  var arrobj = JSON.parse(req.params.id);
+  // console.log(arrobj[0].sub);
+  for(var i = 0 ; i < arrobj.length ; i++)
+  {
+    // console.log(arrobj[i].sub ,  arrobj[i].staff);
+    subdb.create({testcode: code  , sub: arrobj[i].sub , staff: arrobj[i].staff} , function(err , entry) {
+        if(err) 
+        {
+          console.log(err);
+        }
+        else
+        {
+          console.log(entry);
+        }
+    } )
+  }
+  res.send("err");
+}
+);
 
 
 

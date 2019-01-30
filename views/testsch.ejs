@@ -84,20 +84,50 @@
       //   },
       //   source: availableSubjects
       // });
-        var cnt = 0;
+        var cnt = -1;
+        var arrsub = [];
       $('#addsub').click(function() {
         cnt++;
         var sub = $('#sub').val();
         var staff = $('#staff').val();
+        var subobj = { sub: sub , staff: staff };
+        arrsub.push(subobj);
         $('#names').prepend('<div class = "text-white pl-5 rounded bg-info m-2"  id = "' + cnt + '"' +  ' > <h2 class = "d-inline-block">' + sub + ' - ' + staff + '</h2>' + '<button id = "del' + cnt + '"   class="ml-2 mr-5 mt-1 btn btn-secondary d-inline-block float-right"> Delete </button>'  + ' <br> </div>' );
         var namediv = '#del' + cnt;
         var divno = '#' + cnt;
         $(namediv).click(function() {
-        
+          var num = divno.replace(/[^0-9]/g,'');
+          // console.log(num);
+        arrsub[num] = -1;
         $(divno).hide();
       })
       })
+      function makeid() {
+  var text = "";
+  var possible = "abcdefghijklmnopqrstuvwxyz";
 
+  for (var i = 0; i < 4; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+      $('#create').click(function() {
+        var arrjs = [];
+        // console.log(arrsub);
+        for(var i = 0 ; i < arrsub.length ; i++)
+        {
+          if(arrsub[i] != -1)
+          {
+            arrjs.push(arrsub[i]);
+          }
+        }
+        console.log(arrjs);
+        // var arrjson = {a: "one"};
+       $.ajax({type: "GET"    ,  contentType: 'application/json'   ,  url: "/posttest/" + JSON.stringify(arrjs) + "/" + makeid() , success: function() {
+        //  window.location = "/index";
+       }  })
+
+      })
 
     });
 

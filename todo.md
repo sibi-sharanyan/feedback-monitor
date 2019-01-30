@@ -25,3 +25,14 @@ I need not waste much time on the student panel as of now.
 //Index page
 The index page will have the only have a neatly made form asking the students to enter
 their details.
+
+
+
+
+
+//test scheduler
+once the user clicks create test , a unique code needs to be genereated . The code needs to be unique and should not be already present in the database. 
+the database format should be like 
+        code - subjectname - teachername
+        the respective name of the test should be saved with the code in a seperate table.
+        
