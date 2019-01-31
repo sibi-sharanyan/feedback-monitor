@@ -65,7 +65,7 @@ app.get("/ques/:code" , function(req, res) {
       else
       {
         console.log(arr);
-        res.render("check" , { arr: arr });
+        res.render("ques" , { arr: arr });
       }
     });
     
@@ -77,12 +77,6 @@ app.get("/getques/:id" , function(req, res) {
     console.log(quess[req.params.id])
     res.send(quess[req.params.id]);
 })
-
-//display Questions 
-app.get("/ques/:num" , function(req, res) {
-    res.render("ques.ejs" , {num : (parseInt(req.params.num) - 1) , ques : quess});
-})
-
 
 //Ajax response to check if user is already registered
 app.get("/ajax/chuser/:id" , function(req, res) {
@@ -105,13 +99,9 @@ app.get("/ajax/chuser/:id" , function(req, res) {
     
 })
 
-
-//logic to catch the next question
-app.post("/ques/:num"  , function(req , res) {
-  //logic to post the value in the database along wiht the student name
-  console.log(req.body);
-  res.redirect("/ques/" + String(parseInt(req.params.num) + 1) );
-}  );
+app.get("/testsch" , function(req, res) {
+    res.render("testsch");
+})
 
 // The root that redirects to index
 app.get("/", function(req, res) {

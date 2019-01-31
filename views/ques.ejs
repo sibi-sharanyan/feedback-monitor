@@ -25,7 +25,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <style>
     #ques {
       animation-duration: 0.3s;
@@ -103,7 +103,23 @@
           "Q1.Explains the concept clearly";
         $(document).ready(function() {
           $("#next").click(function() {
-            $('.opt > div').show();
+            if($('.opt button').length != $('.clicked').length)
+            {
+                console.log("not filled");
+              swal("Answer all questions", "Choose appropriate options.", "error");
+              return;
+            }
+            
+            
+
+            
+            $('button').show();
+            $('button').removeClass('clicked');
+            // $('div').css('transform' , '');
+                      anime({
+            targets: ".opt",
+            translateX: -1
+          });
             cnt++;
             $("#ques").removeClass("animated bounceInLeft");
             $("#ques").addClass("animated bounceOutRight");
@@ -118,17 +134,29 @@
           });
         });
     <% for(var i = 0 ; i < arr.length ; i++) { %>
-        $(".bt<%= i %>").click(function() {
+        $(".bt<%= i %> button").click(function() {
+          if($(".bt<%= i %> button").hasClass('clicked'))
+          {
+            $(".bt<%= i %> button").removeClass('clicked');
+            
+          anime({
+            targets: ".bt<%= i %>",
+            translateX: -1
+          }); 
+          $(".bt<%= i %> button").show();
+          return;
+          }
           $(".bt<%= i %> :not(:focus)").hide();
           $(".bt<%= i %> :focus").blur();
-
+          
           anime({
             targets: ".bt<%= i %>",
             translateX: 900
           });
-          $(this).addClass('clicked');
+          $(".bt<%= i %> button").addClass('clicked');
          }
         );
       <% } %>
+      
   </script>
 </body>
