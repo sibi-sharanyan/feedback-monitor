@@ -48,19 +48,19 @@
     </div>
 
     <div class="bt<%= i %> mb-1 opt">
-      <button type="button" class="btn btn-primary btn-lg mr-2 " id="ex">
+      <button type="button" class="btn btn-primary btn-lg mr-2 " id="5">
         Excellent
       </button>
-      <button type="button" class="btn btn-primary btn-lg mr-2" id="vg">
+      <button type="button" class="btn btn-primary btn-lg mr-2" id="4">
         Very good
       </button>
-      <button type="button" class="btn btn-primary btn-lg mr-2" id="gd">
+      <button type="button" class="btn btn-primary btn-lg mr-2" id="3">
         Good
       </button>
-      <button type="button" class="btn btn-primary btn-lg mr-2" id="av">
+      <button type="button" class="btn btn-primary btn-lg mr-2" id="2">
         Average
       </button>
-      <button type="button" class="btn btn-primary btn-lg mr-2" id="nd">
+      <button type="button" class="btn btn-primary btn-lg mr-2" id="1">
         Needs to improve
       </button>
     </div>
@@ -103,6 +103,8 @@
           "Q1.Explains the concept clearly";
         $(document).ready(function() {
           $("#next").click(function() {
+                       var opt = [];
+
             if($('.opt button').length != $('.clicked').length)
             {
                 console.log("not filled");
@@ -111,10 +113,21 @@
             }
             
             
+            $('.opt button').each(function(index , elem) {
+              if($(elem).hasClass('takeval'))
+              {
+                console.log($(elem).text());
+                opt.push($(elem).attr('id'));
+                console.log(opt);
+              }
+              
+            } )
 
             
             $('button').show();
             $('button').removeClass('clicked');
+            $('button').removeClass('takeval');
+
             // $('div').css('transform' , '');
                       anime({
             targets: ".opt",
@@ -131,6 +144,11 @@
                 document.querySelector("#ques").innerHTML = quess[cnt];
                 $("#ques").addClass("animated bounceInLeft");
               });
+              
+        $.ajax({url:'/testscore' + JSON.stringify(opt) , type: 'GET' , dataType = 'json' , success: function() {
+                     console.log('Success');   
+        } })
+              
           });
         });
     <% for(var i = 0 ; i < arr.length ; i++) { %>
@@ -144,8 +162,10 @@
             translateX: -1
           }); 
           $(".bt<%= i %> button").show();
+          $(this).removeClass('takeval');
           return;
           }
+          $(this).addClass('takeval');
           $(".bt<%= i %> :not(:focus)").hide();
           $(".bt<%= i %> :focus").blur();
           

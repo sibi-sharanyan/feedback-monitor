@@ -36,3 +36,14 @@ the database format should be like
         code - subjectname - teachername
         the respective name of the test should be saved with the code in a seperate table.
         
+
+//main database to store the test scores
+This database is teh most important , I need tot make it as effecient as possible , But , I'll
+first make it functional
+
+required fields 
+1. test code
+2. student regno 
+3. staff 
+4. subject
+5. 

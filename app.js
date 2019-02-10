@@ -9,6 +9,7 @@ var express = require("express"),
   LocalStrategy = require("passport-local"),
   user = require("./models/users"),
   subdb = require("./models/subdb"),
+  scoredb = require("./models/scoredb"),
   passportLocalMongoose = require("passport-local-mongoose");
   
 
@@ -145,6 +146,13 @@ app.get("/posttest/:id/:code" , function(req , res)
   res.send("err");
 }
 );
+
+
+//To post score to db with AJAX
+app.get("/testscore" , function(req, res) {
+    
+    res.send("yess");
+})
 
 
 
